@@ -61,6 +61,7 @@ class Cuboid:
     length_m: float
     width_m: float
     height_m: float
+    track_uuid: str
     timestamp_ns: Optional[int] = None
     category: Optional[Enum] = None
 
@@ -411,6 +412,7 @@ class CuboidList:
         height_m = data.loc[:, "height_m"].to_numpy()
         category = data.loc[:, "category"].to_numpy()
         timestamp_ns = data.loc[:, "timestamp_ns"].to_numpy()
+        track_uuid = data.loc[:, "track_uuid"].to_numpy()
         N = len(data)
 
         cuboid_list: List[Cuboid] = []
@@ -423,6 +425,7 @@ class CuboidList:
                 height_m=height_m[i],
                 category=category[i],
                 timestamp_ns=timestamp_ns[i],
+                track_uuid=track_uuid[i],
             )
             cuboid_list.append(cuboid)
         return cls(cuboids=cuboid_list)
